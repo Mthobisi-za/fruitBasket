@@ -16,7 +16,7 @@ app.engine(
 var connectionString = process.env.DATABASE_URL;
 var pool;
 if (connectionString) {
-  pool = { connectionString, ssl: { rejectUnauthorized: false } };
+  pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
 } else {
   pool = new Pool({
     user: "postgres",
