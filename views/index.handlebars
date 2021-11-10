@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="form">
+        <form id="form1" action="registerFruit" method="post">
+            <h2>Register Fruit details</h2> <br>
+            <label for="name">Name of fruit: </label>
+            <input type="text" id="name" name="fruitName"> <br> <br>
+            <label for="price">Price:</label>
+            <input type="number" name="fruitPrice" id="price"> <br> <br>
+            <button type="submit">Register</button>
+        </form>
+        <div class="result">
+            <h4>Status</h4> <br> <br>
+            <p class="p"></p>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="{{data}}" id="data">
+<link rel="stylesheet" href="/css/index.css">
+<script src="/js/namechecker.js"></script>

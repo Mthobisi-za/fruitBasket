@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/index.css">
+<div class="container" style="margin: 0px;">
+    <div class="form">
+        <form id="form1" action="registerFruit" method="post">
+            <h2>Fruit Baskets</h2> <br>
+            {{#each  fruit}}
+            <div style="display:flex; flex-wrap:nowrap;gap: 30px;" class="flex">
+                <a href="/fruit/{{this.fruit_name}}"><p>{{this.fruit_name}}</p></a>
+                <p>R{{this.fruit_price}}</p>
+            </div> 
+            {{/each}}
+        </form>
+        <div class="result">
+             <br> <br>
+            <p class="p"><a href="/">Home</a></p>
+        </div>
+    </div>
+</div>

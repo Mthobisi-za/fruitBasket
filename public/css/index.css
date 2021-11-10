@@ -1,0 +1,17 @@
+.container{}
+.form{
+    margin: auto;
+    width: 80%;
+    background-color: #83c5be;
+    min-height: 400px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+#form1{
+    width: 70%;
+    margin: auto;
+}
+.result{
+    width: 20%;
+    margin: auto;
+}
