@@ -24,7 +24,7 @@ module.exports = function dbfile(pool) {
   }
 
   async function getFruitsData() {
-    var data = (await pool.query("select fruit_name, fruit_price,count, fruit_price * count as total  from fruit_basket")).rows;
+    var data = (await pool.query("select fruit_name, fruit_price,count, (fruit_price * count) as total  from fruit_basket")).rows;
     return data;
   }
 
@@ -43,7 +43,7 @@ module.exports = function dbfile(pool) {
     await pool.end();
   }
   async function getTotal(fruitName){
-    var data = await pool.query("select fruit_price * count as total from fruit_basket where fruit_name = $1 ", [fruitName])
+    var data = await pool.query("select (fruit_price * count) as total from fruit_basket where fruit_name = $1 ", [fruitName])
     return data.rows
   }
   return {
