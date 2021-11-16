@@ -32,12 +32,13 @@ if (connectionString) {
 const useRoutes = require("./js/routes")(pool);
 //----config Created modules
 //--routes
+/*
 app.get("/", useRoutes.home);
 app.post("/registerFruit", useRoutes.registerFruit);
 app.get("/fruits", useRoutes.fruits);
 app.get("/fruit/:fruitName", useRoutes.fruit);
 app.post("/submit", useRoutes.update);
-app.get("/reset", useRoutes.reset)
+app.get("/reset", useRoutes.reset)*/
 //--routes
 
 app.listen(PORT, () => {
