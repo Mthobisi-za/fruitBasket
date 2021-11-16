@@ -15,15 +15,19 @@ module.exports = function factory(pool){
         var data = await useDb.getDetails(fruitName);
         return data
     }
-    async function update(price, count, fruitName){
-        var total = price * count;
-        await useDb.update(total, count, fruitName);
+    async function update(count, fruitName){
+        //var total = price * count;
+        await useDb.update(count,fruitName);
     }
     async function reset(){
         await useDb.reset()
     }
     async function disconnect(){
         await useDb.disconnect();
+    }
+    async function getTotal(fruitName){
+        var data = await useDb.getTotal(fruitName);
+        return data
     }
     return{
         setNewFruit,
@@ -32,6 +36,7 @@ module.exports = function factory(pool){
         getDeatails,
         update,
         reset,
-        disconnect
+        disconnect,
+        getTotal
     }
 }

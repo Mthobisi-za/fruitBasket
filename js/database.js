@@ -9,8 +9,8 @@ module.exports = function dbfile(pool) {
     if (checker.length < 1) {
       //does not exist
       await pool.query(
-        "insert into fruit_basket (fruit_name, fruit_price,total,count)values($1, $2,$3,$4)",
-        [name, price, 0, 0]
+        "insert into fruit_basket (fruit_name, fruit_price,count)values($1, $2,$3)",
+        [name, price, 1]
       );
     }
   }
@@ -24,23 +24,27 @@ module.exports = function dbfile(pool) {
   }
 
   async function getFruitsData() {
-    var data = (await pool.query("select fruit_name, fruit_price, total,count  from fruit_basket")).rows;
+    var data = (await pool.query("select fruit_name, fruit_price,count, fruit_price * count as total  from fruit_basket")).rows;
     return data;
   }
 
   async function getDetails(fruitName) {
-      var data = (await pool.query("select fruit_name, fruit_price, total,count from fruit_basket where fruit_name=$1", [fruitName])).rows;
+      var data = (await pool.query("select fruit_name, fruit_price,count from fruit_basket where fruit_name=$1", [fruitName])).rows;
       fulldata = data[0]
       return data[0];
   }
-  async function update(total, count, fruitName){
-    await pool.query("update fruit_basket set count = $1, total = $2 where fruit_name = $3", [count, total, fruitName])
+  async function update( count, fruitName){
+    await pool.query("update fruit_basket set count = count + $1 where fruit_name = $2", [count, fruitName])
   }
   async function reset(){
     await pool.query("delete from fruit_basket");
   }
   async function disconnect(){
     await pool.end();
+  }
+  async function getTotal(fruitName){
+    var data = await pool.query("select fruit_price * count as total from fruit_basket where fruit_name = $1 ", [fruitName])
+    return data.rows
   }
   return {
     insertNewFruit,
@@ -49,6 +53,7 @@ module.exports = function dbfile(pool) {
     getDetails,
     update,
     reset,
-    disconnect
+    disconnect,
+    getTotal
   };
 };

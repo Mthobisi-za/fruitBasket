@@ -23,35 +23,35 @@ describe("Factory Function Tests", async function(){
         var data ='APPLE'
         await useFactory.setNewFruit("apple", 5);
         assert.equal(data, await useFactory.getfruitnames())
-    });
+    }); 
     it('Should be able to get all fruits names', async function()  {
         var data =['APPLE', 'ORANGE', "PEACH"]
         await useFactory.setNewFruit("apple", 5);
         await useFactory.setNewFruit("orange", 5);
         await useFactory.setNewFruit("peach", 5);
         assert.deepEqual(data, await useFactory.getfruitnames())
-    });
+    }); 
     it('Should be able to get full data for all fruits', async function()  {
         var data = [
-            {
-              count: 0,
-              fruit_name: 'APPLE',
-              fruit_price: '5.00',
-              total: '0.00'
-            },
-            {
-              count: 0,
-              fruit_name: 'ORANGE',
-              fruit_price: '5.00',
-              total: '0.00'
-            },
-            {
-              count: 0,
-              fruit_name: 'PEACH',
-              fruit_price: '5.00',
-              total: '0.00'
-            }
-          ]
+          {
+            count: 1,
+            fruit_name: 'APPLE',
+            fruit_price: '5.00',
+            total: '5.00'
+          },
+          {
+            count: 1,
+            fruit_name: 'ORANGE',
+            fruit_price: '5.00',
+            total: '5.00'
+          },
+          {
+            count: 1,
+            fruit_name: 'PEACH',
+            fruit_price: '5.00',
+            total: '5.00'
+          }
+        ]
         await useFactory.setNewFruit("apple", 5);
         await useFactory.setNewFruit("orange", 5);
         await useFactory.setNewFruit("peach", 5);
@@ -59,10 +59,9 @@ describe("Factory Function Tests", async function(){
     });
     it('Should be able to get data for specific fruit', async function()  {
         var data ={
-            count: 0,
+            count: 1,
             fruit_name: 'APPLE',
-            fruit_price: '5.00',
-            total: '0.00'
+            fruit_price: '5.00'
           }
         await useFactory.setNewFruit("apple", 5);
         await useFactory.setNewFruit("orange", 5);
@@ -71,17 +70,27 @@ describe("Factory Function Tests", async function(){
     });
     it('Should be able to update data for a specific fruit', async function()  {
         var data = [
-            {
-              count: 4,
-              fruit_name: 'APPLE',
-              fruit_price: '5.00',
-              total: '28.00'
-            }
+          {
+            count: 8,
+            fruit_name: 'APPLE',
+            fruit_price: '5.00',
+            total: "40.00"
+          }
           ]
         await useFactory.setNewFruit("apple", 5);
-        await useFactory.update(7, 4, 'APPLE');
+        await useFactory.update(7, 'APPLE');
         assert.deepEqual(data, await useFactory.getFruitsData())
     });
+    it('Should be able to show the total price for a specific basket', async function()  {
+      var data = [
+        {
+          total: "40.00"
+        }
+        ]
+      await useFactory.setNewFruit("apple", 5);
+      await useFactory.update(7, 'APPLE');
+      assert.deepEqual(data, await useFactory.getTotal("APPLE"))
+  });
     after(async function (){
        await useFactory.disconnect()
     })
