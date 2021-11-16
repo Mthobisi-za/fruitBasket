@@ -33,26 +33,26 @@ module.exports = function dbfile(pool) {
       fulldata = data[0]
       return data[0];
   }
+  
   async function update( count, fruitName){
     await pool.query("update fruit_basket set count = count + $1 where fruit_name = $2", [count, fruitName])
   }
-  async function reset(){
-    await pool.query("delete from fruit_basket");
-  }
+ 
   async function disconnect(){
     await pool.end();
   }
+
   async function getTotal(fruitName){
     var data = await pool.query("select (fruit_price * count) as total from fruit_basket where fruit_name = $1 ", [fruitName])
     return data.rows
   }
+
   return {
     insertNewFruit,
     getFruitNames,
     getFruitsData,
     getDetails,
     update,
-    reset,
     disconnect,
     getTotal
   };

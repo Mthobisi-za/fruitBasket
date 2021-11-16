@@ -17,7 +17,7 @@ const assert = require("assert");
 //-----unit test
 describe("Factory Function Tests", async function(){
     beforeEach(async function(){
-        await useFactory.reset()
+      await pool.query("delete from fruit_basket")
     });
     it('Should be able to register a new fruit Basket', async function()  {
         var data ='APPLE'

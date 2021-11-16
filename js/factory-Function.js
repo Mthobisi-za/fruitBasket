@@ -19,9 +19,7 @@ module.exports = function factory(pool){
         //var total = price * count;
         await useDb.update(count,fruitName);
     }
-    async function reset(){
-        await useDb.reset()
-    }
+  
     async function disconnect(){
         await useDb.disconnect();
     }
@@ -35,7 +33,6 @@ module.exports = function factory(pool){
         getFruitsData,
         getDeatails,
         update,
-        reset,
         disconnect,
         getTotal
     }
