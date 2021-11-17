@@ -25,8 +25,9 @@ describe("Factory Function Tests", async function(){
         assert.equal(data, await useFactory.getfruitnames())
     }); 
     it('Should be able to get all fruits names', async function()  {
-        var data =['APPLE', 'ORANGE', "PEACH"]
+        var data =['APPLE', 'APPLE','ORANGE', "PEACH"]
         await useFactory.setNewFruit("apple", 5);
+        await useFactory.setNewFruit("apple", 10);
         await useFactory.setNewFruit("orange", 5);
         await useFactory.setNewFruit("peach", 5);
         assert.deepEqual(data, await useFactory.getfruitnames())

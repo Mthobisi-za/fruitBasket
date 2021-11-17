@@ -1,18 +1,8 @@
 module.exports = function dbfile(pool) {
+
   async function insertNewFruit(name, price) {
     var name = name.toUpperCase();
-    var checker = (
-      await pool.query("select * from  fruit_basket  where fruit_name = $1", [
-        name,
-      ])
-    ).rows;
-    if (checker.length < 1) {
-      //does not exist
-      await pool.query(
-        "insert into fruit_basket (fruit_name, fruit_price,count)values($1, $2,$3)",
-        [name, price, 1]
-      );
-    }
+      await pool.query("insert into fruit_basket (fruit_name, fruit_price,count)values($1, $2,$3)",[name, price, 1])
   }
 
   async function getFruitNames() {
