@@ -7,10 +7,7 @@ module.exports = function dbfile(pool) {
 
   async function getFruitNames() {
     var data = (await pool.query("select fruit_name from fruit_basket")).rows;
-    var arg = data.map((current) => {
-      return current.fruit_name;
-    });
-    return arg;
+    return data;
   }
 
   async function getFruitsData() {
