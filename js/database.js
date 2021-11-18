@@ -1,8 +1,8 @@
 module.exports = function dbfile(pool) {
 
-  async function insertNewFruit(name, price) {
+  async function insertNewFruit(name, price, count) {
     var name = name.toUpperCase();
-      await pool.query("insert into fruit_basket (fruit_name, fruit_price,count)values($1, $2,$3)",[name, price, 1])
+      await pool.query("insert into fruit_basket (fruit_name, fruit_price,count)values($1, $2,$3)",[name, price, count])
   }
 
   async function getFruitNames() {

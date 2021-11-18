@@ -25,7 +25,7 @@ describe("Factory Function Tests", async function(){
             fruit_name: 'APPLE'
           }
         ]
-        await useFactory.insertNewFruit("apple", 5);
+        await useFactory.insertNewFruit("apple", 5, 5);
         assert.deepEqual(data, await useFactory.getFruitNames())
     }); 
     it('Should be able to get all fruits names', async function()  {
@@ -43,10 +43,10 @@ describe("Factory Function Tests", async function(){
             fruit_name: 'PEACH'
           }
         ]
-        await useFactory.insertNewFruit("apple", 5);
-        await useFactory.insertNewFruit("apple", 10);
-        await useFactory.insertNewFruit("orange", 5);
-        await useFactory.insertNewFruit("peach", 5);
+        await useFactory.insertNewFruit("apple", 5, 2);
+        await useFactory.insertNewFruit("apple", 10, 20);
+        await useFactory.insertNewFruit("orange", 5, 10);
+        await useFactory.insertNewFruit("peach", 5, 15);
         assert.deepEqual(data, await useFactory.getFruitNames())
     }); 
     it('Should be able to get full data for all fruits', async function()  {
@@ -70,9 +70,9 @@ describe("Factory Function Tests", async function(){
             total: '5.00'
           }
         ]
-        await useFactory.insertNewFruit("apple", 5);
-        await useFactory.insertNewFruit("orange", 5);
-        await useFactory.insertNewFruit("peach", 5);
+        await useFactory.insertNewFruit("apple", 5, 1);
+        await useFactory.insertNewFruit("orange", 5, 1);
+        await useFactory.insertNewFruit("peach", 5, 1);
         assert.deepEqual(data, await useFactory.getFruitsData())
     });
     it('Should be able to get data for specific fruit', async function()  {
@@ -81,9 +81,9 @@ describe("Factory Function Tests", async function(){
             fruit_name: 'APPLE',
             fruit_price: '5.00'
           }
-        await useFactory.insertNewFruit("apple", 5);
-        await useFactory.insertNewFruit("orange", 5);
-        await useFactory.insertNewFruit("peach", 5);
+        await useFactory.insertNewFruit("apple", 5, 1);
+        await useFactory.insertNewFruit("orange", 5, 10);
+        await useFactory.insertNewFruit("peach", 5, 5);
         assert.deepEqual(data, await useFactory.getDetails("APPLE"))
     });
     it('Should be able to update data for a specific fruit', async function()  {
@@ -95,7 +95,7 @@ describe("Factory Function Tests", async function(){
             total: "40.00"
           }
           ]
-        await useFactory.insertNewFruit("apple", 5);
+        await useFactory.insertNewFruit("apple", 5, 1);
         await useFactory.update(7, 'APPLE');
         assert.deepEqual(data, await useFactory.getFruitsData())
     });
@@ -105,7 +105,7 @@ describe("Factory Function Tests", async function(){
           total: "40.00"
         }
         ]
-      await useFactory.insertNewFruit("apple", 5);
+      await useFactory.insertNewFruit("apple", 5, 1);
       await useFactory.update(7, 'APPLE');
       assert.deepEqual(data, await useFactory.getTotal("APPLE"))
   });
